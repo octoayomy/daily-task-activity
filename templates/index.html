@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daily Task Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>📋 Daftar Tugas Harian</h1>
+    <a class="button" href="{{ url_for('add') }}">+ Tambah Tugas</a>
+    <a class="button" href="{{ url_for('export_pdf') }}">📄 Ekspor ke PDF</a>
+    <a href="{{ url_for('logout') }}">🚪 Logout</a>
+    {% if tasks %}
+        <ul class="task-list">
+        {% for task in tasks %}
+            <li class="{{ 'done' if task[4] else '' }}">
+                <strong>{{ task[1] }}</strong><br>
+                <span>{{ task[2] }}</span><br>
+                <em>Tenggat: {{ task[3] }}</em><br>
+                {% if not task[4] %}
+                    <a href="{{ url_for('complete', task_id=task[0]) }}">✔ Selesai</a>
+                {% endif %}
+                <a href="{{ url_for('delete', task_id=task[0]) }}" class="delete">🗑 Hapus</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Tidak ada tugas saat ini.</p>
+    {% endif %}
+</body>
+</html>

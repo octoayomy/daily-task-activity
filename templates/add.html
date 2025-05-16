@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tambah Tugas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>➕ Tambah Tugas Baru</h1>
+    <form method="post">
+        <label>Judul:</label><br>
+        <input type="text" name="title" required><br><br>
+        <label>Deskripsi:</label><br>
+        <textarea name="description"></textarea><br><br>
+        <label>Tenggat (opsional):</label><br>
+        <input type="date" name="deadline"><br><br>
+        <button type="submit">Simpan</button>
+        <a href="{{ url_for('index') }}">🔙 Kembali</a>
+    </form>
+</body>
+</html>
